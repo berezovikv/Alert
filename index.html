@@ -10,7 +10,7 @@
         <input id="add" type="checkbox" name="check" value="add">
         <br>
         <br>
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="klik();">Submit</button>
     </form>
     
 <script>
@@ -21,22 +21,24 @@
     if (checkbox.checked){
         checkbox.insertAdjacentHTML('afterend', '<div id="second_field"><lable>add another text </lable><input type="text" name="second_field"></div>');
     }
-    else{ 
+    else { 
       var second = document.getElementById("second_field");
       second.remove(second.selectedIndex);
          
     }
-    const form = document.querySelector('form'); 
-    form.addEventListener('submit', el => { 
-        const sel = el.target.querySelectorAll('input');
-            const items = Array.from(sel);
-            const result = items
-                .filter(el => el.type !== !el.name || el.type === 'checkbox' && el.checked)
-                .reduce((acc, el) => `${acc}${el.name} = ${el.value}\n`, '')
-            alert(result)}); 
-          
-});
-    
+        
+        });
+        function klik () {
+  var input = document.getElementsByTagName('input'),
+    array = [];
+    function save() {
+    for (var i = 0; i < input.length; i++) {
+      array[i] = input[i].name +"="+input[i].value +"\n";
+    }
+    alert(array);
+  }
+  save();
+} 
 
     
 </script> 
