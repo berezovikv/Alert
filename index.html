@@ -70,12 +70,12 @@
         if ($(this)) {
           let e = (document.getElementById("secondField"));
 
-          if (localStorage.getItem(`user_val`)) {
-            e.value = localStorage.getItem(`user_val`);
+          if (localStorage.getItem('user_val')) {
+            e.value = localStorage.getItem('user_val');
           }
 
           e.oninput = function () {
-            localStorage.setItem(`user_val`, e.value);
+            localStorage.setItem('user_val', e.value);
           };
         }
 
