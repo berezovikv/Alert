@@ -1,45 +1,94 @@
-<html>
-    <head>
-        <title> Анимация</title>
-    </head>
+<!DOCTYPE html>
+
+<head>
+  <title> Анимация</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script>
+
+
+</head>
+
 <body data-gr-c-s-loaded="true">
-    <form action="">
-        <input type="text" name="first_field">
-        <br>
-        <label for="add"> add new field</label>
-        <input id="add" type="checkbox" name="check" value="add">
-        <br>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-    
-<script>
+  <form class="form">
+    <input type="text" name="first_field">
+    <br>
+    <label for="add"> add new field</label>
+    <input id="add" type="checkbox" name="check" value="add">
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
 
 
-  var checkbox = document.getElementById('add');
-        checkbox.addEventListener('change', function() {
-    if (checkbox.checked){
-        checkbox.insertAdjacentHTML('afterend', '<div id="second_field"><lable>add another text </lable><input type="text" name="second_field"></div>');
-    }
-    else{ 
-      var second = document.getElementById("second_field");
-      second.remove(second.selectedIndex);
-         
-    }
-    const form = document.querySelector('form'); 
-    form.addEventListener('submit', el => { 
-        const sel = el.target.querySelectorAll('input');
-            const items = Array.from(sel);
-            const result = items
-                .filter(el => el.type !== !el.name || el.type === 'checkbox' && el.checked)
-                .reduce((acc, el) => `${acc}${el.name} = ${el.value}\n`, '')
-            alert(result)}); 
-          
-});
-    
+    //   var checkbox = document.getElementById('add');
+    //         checkbox.addEventListener('change', function() {
+    //     if (checkbox.checked){
+    //         checkbox.insertAdjacentHTML('afterend', '<div id="second_field"><lable>add another text </lable><input type="text" name="second_field"></div>');
+    //     }
+    //     else { 
+    //       var second = document.getElementById("second_field");
+    //       second.remove(second.selectedIndex);
 
-    
-</script> 
+    //     }
+
+    //         });
+
+
+    //         function klik () {
+    //   var input = document.getElementsByTagName('input')
+    //     array = [];
+    //     function save() {
+    //     for (var i = 0; i < input.length; i++) {
+    //       array[i] = input[i].name +"="+input[i].value +"\n";
+    //     }
+    //     alert(array);
+    //   }
+    //   save();
+    // } 
+
+    $('form').submit(function () {
+      var test = [];
+      $('form').find('input').each(function (i, input) {
+        if ($("#add").is(':checked')) {
+          test.push("\n" + $(this).attr('name') + " = " + $(this).val());
+        } else {
+          return test.push("\n" + $(this).attr('name') + " = " + $(this).val());
+
+        }
+      });
+
+      alert(test);
+
+    });
+
+    $('#add').click(function () {
+      if ($(this).is(':checked')) {
+        $('<div id="second_field"><lable>add another text </lable><input type="text" id="secondField" name="second_field"></div>').insertAfter($("#add")
+        );
+        if ($("input").is("#secondField")) {
+          var input = document.getElementById("secondField");
+          input.value = localStorage.getItem("user-value");
+
+          input.oninput = function () {
+          localStorage.setItem("iuser-value", input.value);
+          };
+        }
+
+
+      } else {
+        $('#second_field').remove();
+      }
+    });
+
+
+
+
+
+
+  </script>
 
 </body>
+
 </html>
